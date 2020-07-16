@@ -9,7 +9,7 @@ Use the admin account and double click the program to update your windows date &
 
 ## How to build
 1. install pyinstaller `pip install pyinstaller`
-2. $pyinstaller -F -c DateTimeUpdater\__main__.py -n DateTimeUpdater
+2. `$pyinstaller -F -c DateTimeUpdater\__main__.py -n DateTimeUpdater`
 
 ---
 DateTimeUpdater - 透過網路與NTP伺服器取得時間，更新你的Windows 本地日期與時間
