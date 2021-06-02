@@ -20,7 +20,7 @@ if __name__ == "__main__":
     try:
         if os.name == "nt":
             # check admin
-            if ctypes.windll.shell32.IsUserAnAdmin() == True:
+            if ctypes.windll.shell32.IsUserAnAdmin():
                 print("You are admin")
                 print("Update Your Date and Time to {} {}\n".format(_date, _time))
                 os.system("date {} && time {}".format(_date, _time))
@@ -28,8 +28,6 @@ if __name__ == "__main__":
                 print("You are not admin\nPls use root/administrator account.")
         else:
             print("Your OS is not windowds.")
-    except:
-        pass
     finally:
         # wait the consle
         time.sleep(1)

@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import time
 import ntplib
 from time import gmtime, strftime
 
 NTPServer = ["tick.stdtime.gov.tw", "time.stdtime.gov.tw", "pool.ntp.org", "time.windows.com"]
+
 
 # PEP 484 -- Type Hints
 def getNTP_Server_Time() -> str:
