@@ -5,12 +5,9 @@ import time
 import ntplib
 from time import gmtime, strftime
 
-NTPServer = ["tick.stdtime.gov.tw", "time.stdtime.gov.tw",
-             "pool.ntp.org", "time.windows.com"]
+NTPServer = ["tick.stdtime.gov.tw", "time.stdtime.gov.tw", "pool.ntp.org", "time.windows.com"]
 
 # PEP 484 -- Type Hints
-
-
 def getNTP_Server_Time() -> str:
     """
     try and get NTP Server time , to show message when recognized
@@ -23,12 +20,10 @@ def getNTP_Server_Time() -> str:
 
         except Exception as e:
             print(e)
-            print("Maybe the NTPServer '{}'is incorrect , timeout or shutdown.\n".format(
-                ntpserver))
+            print("Maybe the NTPServer '{}'is incorrect , timeout or shutdown.\n".format(ntpserver))
             # 如果NTP Serever全都不行，有可能是網路沒有連接
             if ntpserver == NTPServer[-1]:
-                print(
-                    "Can't get any NTP Server Respone.\nMaybe your Internet is disconnect.")
+                print("Can't get any NTP Server Respone.\nMaybe your Internet is disconnect.")
                 return None
         else:
             timeStamp = response.tx_time
