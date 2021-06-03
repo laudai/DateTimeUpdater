@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 __author__ = "laudai"
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 if __name__ == "__main__":
 
@@ -12,22 +12,28 @@ if __name__ == "__main__":
     import ctypes
 
     UTC_Timezone_str = getTime.getUTC_Timezone()
-    NTP_Server_Time_timeStamp_str = getTime.getNTP_Server_Time()
-    _date = time.strftime("%Y-%m-%d", time.localtime(NTP_Server_Time_timeStamp_str))
-    _time = time.strftime("%X", time.localtime(NTP_Server_Time_timeStamp_str))
-    print("Your UTC Timezone is {}\n".format(UTC_Timezone_str))
+    get_NTP_Server_Time_timeStamp_result = getTime.getNTP_Server_Time()
+    if get_NTP_Server_Time_timeStamp_result:
+        _date = time.strftime("%Y-%m-%d", time.localtime(get_NTP_Server_Time_timeStamp_result))
+        _time = time.strftime("%X", time.localtime(get_NTP_Server_Time_timeStamp_result))
+        print(f"Your UTC Timezone is {UTC_Timezone_str}\n")
 
-    try:
         if os.name == "nt":
             # check admin
+            print("Check admin to modified date & time.")
             if ctypes.windll.shell32.IsUserAnAdmin():
-                print("You are admin")
+                print("You are admin\n")
                 print("Update Your Date and Time to {} {}\n".format(_date, _time))
-                os.system("date {} && time {}".format(_date, _time))
+                os.system(f"date {_date} && time {_time}")
             else:
                 print("You are not admin\nPls use root/administrator account.")
         else:
             print("Your OS is not windowds.")
-    finally:
-        # wait the consle
+    else:
+        print("Can't set datetime to system\n")
+
+    WAITTIME_seconds = 2
+    # wait time to exit this consle
+    for second in range(WAITTIME_seconds, 0, -1):
+        print(f"\rscript will exit in {second} seconds.", end="")
         time.sleep(1)
